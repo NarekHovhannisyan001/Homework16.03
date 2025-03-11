@@ -26,6 +26,7 @@ public class ApplicationContext {
     public <T> T getObject(Class<T> cls) {
         Class<? extends T> implClass = objectConfigReader.getImplClass(cls);
 
+
         if (singletonCache.containsKey(implClass)) {
             return (T) singletonCache.get(implClass);
         }

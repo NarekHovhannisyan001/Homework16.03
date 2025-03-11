@@ -1,12 +1,10 @@
 package org.example.app;
 
 
-import org.example.infrastructure.annotation.Component;
 import org.example.infrastructure.annotation.Inject;
 import org.example.infrastructure.annotation.Log;
 
 @Log
-@Component
 public class UserRegistrationService {
 
     @Inject

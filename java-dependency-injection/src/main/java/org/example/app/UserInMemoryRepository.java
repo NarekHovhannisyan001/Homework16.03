@@ -1,13 +1,11 @@
 package org.example.app;
 
-import org.example.infrastructure.annotation.Component;
-import org.example.infrastructure.annotation.Log;
-import org.example.infrastructure.annotation.Singleton;
+import org.example.infrastructure.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Singleton
+@Scope(ScopeType.SINGLETON)
 @Log
 @Component
 public class UserInMemoryRepository implements UserRepository {

@@ -45,10 +45,6 @@ public class ObjectFactory {
 
     @SneakyThrows
     public <T> T createObject(Class<T> cls) {
-        if (!cls.isAnnotationPresent(Component.class)) {
-            throw  new RuntimeException("Factory can only be created with @Component annotation" + cls.getName());
-        }
-
         T obj = cls.getDeclaredConstructor().newInstance();
 
         for (ObjectConfigurator objectConfigurator : objectConfigurators) {

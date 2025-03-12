@@ -16,8 +16,7 @@ public class InjectAnnotationObjectConfigurator implements ObjectConfigurator {
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Inject.class)) {
                 field.setAccessible(true);
-                Class<?> implClass = context.getObjectConfigReader().getImplClass(field.getType());
-                field.set(obj, context.getObject(implClass));
+                field.set(obj, context.getObject(field.getType()));
             }
         }
     }

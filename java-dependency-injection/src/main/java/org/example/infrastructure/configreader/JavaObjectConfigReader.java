@@ -32,7 +32,13 @@ public class JavaObjectConfigReader implements ObjectConfigReader {
             throw new RuntimeException("Interface should have only one implementation");
         }
 
-        return subTypesOf.iterator().next();
+        Class<? extends T> implClass = subTypesOf.iterator().next();
+
+        if(!implClass.isAnnotationPresent(Component.class)) {
+            throw new RuntimeException("Implementation class must be annotated with @Component: " + implClass.getName());
+        }
+
+        return implClass;
     }
 
     @Override

@@ -19,9 +19,9 @@ public class JavaObjectConfigReader implements ObjectConfigReader {
     @Override
     public <T> Class<? extends T> getImplClass(Class<T> cls) {
         if (!cls.isInterface()) {
-//            if(cls.isAnnotationPresent(Component.class)) {
-//                throw  new RuntimeException("Component is not annotated with @Component");
-//            }
+            if (!cls.isAnnotationPresent(Component.class)) {
+                throw new RuntimeException("Class is not annotated with @Component: " + cls.getName());
+            }
             return cls;
         }
 

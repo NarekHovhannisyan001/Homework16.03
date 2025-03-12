@@ -26,15 +26,15 @@ public class ApplicationContext {
     @SuppressWarnings("unchecked")
     public <T> T getObject(Class<T> cls) {
         Class<? extends T> implClass = objectConfigReader.getImplClass(cls);
+        if(!implClass.isAnnotationPresent(Component.class)) {
+            throw new RuntimeException("Implementation class must be annotated with @Component: " + implClass.getName());
+        }
 
 
         if (singletonCache.containsKey(implClass)) {
             return (T) singletonCache.get(implClass);
         }
 
-//        if (!cls.isAnnotationPresent(Component.class)) {
-//            throw  new RuntimeException("From Component is not annotated with @Component");
-//        }
         T object = objectFactory.createObject(implClass);
 
         if (implClass.isAnnotationPresent(Singleton.class)) {

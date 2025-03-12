@@ -49,16 +49,6 @@ public class ObjectFactory {
             throw  new RuntimeException("Factory can only be created with @Component annotation" + cls.getName());
         }
 
-        Field[] fields = cls.getDeclaredFields();
-        for (Field field : fields) {
-            if(field.isAnnotationPresent(Inject.class)) {
-                field.setAccessible(true);
-                if (!applicationContext.getObject(field.getType()).getClass().isAnnotationPresent(Component.class)) {
-                    throw new RuntimeException("@Inject field must be annotated with @Component");
-                }
-            }
-
-        }
         T obj = cls.getDeclaredConstructor().newInstance();
 
         for (ObjectConfigurator objectConfigurator : objectConfigurators) {

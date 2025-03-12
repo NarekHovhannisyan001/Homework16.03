@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
-//@Log
+@Log
 @Component
 public class UserInMemoryRepository implements UserRepository {
 

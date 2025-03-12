@@ -1,6 +1,7 @@
 package org.example.infrastructure.proxywrapper;
 
 import net.sf.cglib.proxy.Enhancer;
+import org.example.infrastructure.annotation.Component;
 import org.example.infrastructure.annotation.Log;
 
 import java.lang.reflect.InvocationHandler;

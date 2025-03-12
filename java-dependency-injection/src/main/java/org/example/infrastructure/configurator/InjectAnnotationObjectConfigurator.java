@@ -2,6 +2,7 @@ package org.example.infrastructure.configurator;
 
 import lombok.SneakyThrows;
 import org.example.infrastructure.ApplicationContext;
+import org.example.infrastructure.annotation.Component;
 import org.example.infrastructure.annotation.Inject;
 
 import java.lang.reflect.Field;

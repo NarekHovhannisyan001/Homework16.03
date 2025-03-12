@@ -1,5 +1,8 @@
 package org.example.app;
 
+import org.example.infrastructure.annotation.Component;
+
+@Component
 public class DefaultEmailSender implements EmailSender {
 
     @Override

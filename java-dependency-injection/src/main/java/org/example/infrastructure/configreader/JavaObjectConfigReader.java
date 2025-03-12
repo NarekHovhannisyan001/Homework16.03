@@ -1,5 +1,6 @@
 package org.example.infrastructure.configreader;
 
+import org.example.infrastructure.annotation.Component;
 import org.reflections.Reflections;
 
 import java.util.Collection;
@@ -18,6 +19,9 @@ public class JavaObjectConfigReader implements ObjectConfigReader {
     @Override
     public <T> Class<? extends T> getImplClass(Class<T> cls) {
         if (!cls.isInterface()) {
+//            if(cls.isAnnotationPresent(Component.class)) {
+//                throw  new RuntimeException("Component is not annotated with @Component");
+//            }
             return cls;
         }
 

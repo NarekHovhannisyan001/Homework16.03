@@ -8,7 +8,6 @@ public class Main {
         ApplicationContext context = Application.run("org.example");
 
         UserRegistrationService registrationService = context.getObject(UserRegistrationService.class);
-
         registrationService.register(
                 new User(
                         "Gurgen",

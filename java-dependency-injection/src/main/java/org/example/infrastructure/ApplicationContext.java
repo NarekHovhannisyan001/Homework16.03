@@ -2,6 +2,7 @@ package org.example.infrastructure;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.infrastructure.annotation.Component;
 import org.example.infrastructure.annotation.Singleton;
 import org.example.infrastructure.configreader.ObjectConfigReader;
 
@@ -31,12 +32,14 @@ public class ApplicationContext {
             return (T) singletonCache.get(implClass);
         }
 
+//        if (!cls.isAnnotationPresent(Component.class)) {
+//            throw  new RuntimeException("From Component is not annotated with @Component");
+//        }
         T object = objectFactory.createObject(implClass);
 
         if (implClass.isAnnotationPresent(Singleton.class)) {
             singletonCache.put(implClass, object);
         }
-
         return object;
     }
 }

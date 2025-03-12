@@ -1,5 +1,6 @@
 package org.example.app;
 
+import org.example.infrastructure.annotation.Component;
 import org.example.infrastructure.annotation.Log;
 import org.example.infrastructure.annotation.Singleton;
 
@@ -7,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
-@Log
+//@Log
+@Component
 public class UserInMemoryRepository implements UserRepository {
 
     private List<User> users = new ArrayList<>();

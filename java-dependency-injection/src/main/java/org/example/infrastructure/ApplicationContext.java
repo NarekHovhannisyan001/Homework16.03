@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.example.infrastructure.annotation.Component;
 import org.example.infrastructure.annotation.Scope;
 import org.example.infrastructure.annotation.ScopeType;
-import org.example.infrastructure.annotation.Singleton;
 import org.example.infrastructure.configreader.ObjectConfigReader;
 
 import java.util.HashMap;

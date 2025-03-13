@@ -2,10 +2,7 @@ package org.example.infrastructure.configurator;
 
 import lombok.SneakyThrows;
 import org.example.infrastructure.ApplicationContext;
-import org.example.infrastructure.annotation.Component;
-import org.example.infrastructure.annotation.Inject;
-import org.example.infrastructure.annotation.PostConstruct;
-import org.example.infrastructure.annotation.Qualifier;
+import org.example.infrastructure.annotation.*;
 
 import javax.crypto.spec.PSource;
 import java.lang.reflect.Field;
@@ -29,6 +26,15 @@ public class InjectAnnotationObjectConfigurator implements ObjectConfigurator {
                     value = context.getObject(field.getType());
                 }
                 field.set(obj, value);
+            } else if (field.isAnnotationPresent(Env.class)) {
+                String value = field.getAnnotation(Env.class).value();
+                if (!value.isEmpty()) {
+                    field.setAccessible(true);
+                    field.set(obj,value);
+                } else {
+                    field.setAccessible(true);
+                    field.set(obj,field.getName());
+                }
             }
         }
         for (Method method : obj.getClass().getDeclaredMethods()) {

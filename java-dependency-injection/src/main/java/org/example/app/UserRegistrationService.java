@@ -1,6 +1,7 @@
 package org.example.app;
 
 
+import lombok.Getter;
 import org.example.infrastructure.annotation.*;
 import org.example.infrastructure.configreader.ObjectConfigReader;
 
@@ -17,6 +18,14 @@ public class UserRegistrationService {
     @Inject
     @Qualifier(DefaultEmailSender.class)
     private EmailSender emailSender;
+
+    @Getter
+    @Env
+    private String env;
+
+    @Getter
+    @Env("Chlpppppp")
+    private String chlp;
 
     public void register(User user) {
         User existingUser = userRepository.getUser(user.getUsername());
@@ -43,5 +52,9 @@ public class UserRegistrationService {
 
     public void foo() {
         System.out.println("hello foo");
+    }
+    @PostConstruct
+    public void init() {
+        System.out.println(env + " :: " + chlp);
     }
 }

@@ -18,7 +18,6 @@ public class JavaObjectConfigReader implements ObjectConfigReader {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public <T> Class<? extends T> getImplClass(Class<T> cls) {
         if (!cls.isInterface()) {
             if (!cls.isAnnotationPresent(Component.class)) {

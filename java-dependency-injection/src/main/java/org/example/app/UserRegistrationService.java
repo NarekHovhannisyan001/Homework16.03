@@ -27,6 +27,13 @@ public class UserRegistrationService {
     @Env("Chlpppppp")
     private String chlp;
 
+
+    @Property("datasource.username")
+    private String username;
+
+    @Property
+    private String dataSourcePassword;
+
     public void register(User user) {
         User existingUser = userRepository.getUser(user.getUsername());
         if (existingUser != null) {
@@ -56,5 +63,6 @@ public class UserRegistrationService {
     @PostConstruct
     public void init() {
         System.out.println(env + " :: " + chlp);
+        System.out.println(username + "<>" + dataSourcePassword);
     }
 }

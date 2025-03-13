@@ -5,8 +5,14 @@ import org.example.infrastructure.ApplicationContext;
 import org.example.infrastructure.annotation.*;
 
 import javax.crypto.spec.PSource;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class InjectAnnotationObjectConfigurator implements ObjectConfigurator {
 
@@ -35,6 +41,23 @@ public class InjectAnnotationObjectConfigurator implements ObjectConfigurator {
                     field.setAccessible(true);
                     field.set(obj,field.getName());
                 }
+            } else if (field.isAnnotationPresent(Property.class)) {
+               try(FileInputStream fileInputStream = new FileInputStream("src/main/java/org/example/resources/application.properties.properties" )) {
+                Properties properties = new Properties();
+                properties.load(fileInputStream);
+                String value =  field.getAnnotation(Property.class).value();
+                if (!value.isEmpty()) {
+                    field.setAccessible(true);
+                    field.set(obj,properties.getProperty(value));
+                } else {
+                    field.setAccessible(true);
+                    field.set(obj,field.getName());
+                }
+               } catch (FileNotFoundException e) {
+                   System.err.println(e.getMessage() + " file not found");
+               }
+
+
             }
         }
         for (Method method : obj.getClass().getDeclaredMethods()) {

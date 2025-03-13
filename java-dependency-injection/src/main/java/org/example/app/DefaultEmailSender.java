@@ -15,3 +15,7 @@ public class DefaultEmailSender implements EmailSender {
         );
     }
 }
+
+class Singleton extends DefaultEmailSender {}
+class SingletonHolder extends DefaultEmailSender {}
+

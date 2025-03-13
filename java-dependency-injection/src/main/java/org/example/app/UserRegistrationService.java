@@ -1,11 +1,10 @@
 package org.example.app;
 
 
-import org.example.infrastructure.annotation.Component;
-import org.example.infrastructure.annotation.Inject;
-import org.example.infrastructure.annotation.Log;
-import org.example.infrastructure.annotation.Qualifier;
+import org.example.infrastructure.annotation.*;
 import org.example.infrastructure.configreader.ObjectConfigReader;
+
+import javax.annotation.PreDestroy;
 
 @Log
 @Component
@@ -34,5 +33,15 @@ public class UserRegistrationService {
                 "Account confirmation",
                 "Please confirm your newly created account"
         );
+    }
+
+    @PostConstruct
+    public void print() {
+        System.out.println("hello world");
+    }
+
+
+    public void foo() {
+        System.out.println("hello foo");
     }
 }

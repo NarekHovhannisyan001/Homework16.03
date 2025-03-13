@@ -31,10 +31,6 @@ public class JavaObjectConfigReader implements ObjectConfigReader {
                 reflections.getSubTypesOf(cls);
 
         if (subTypesOf.size() != 1) {
-            if (cls.isAnnotationPresent(Qualifier.class)) {
-                Class<?> value = cls.getDeclaredAnnotation(Qualifier.class).value();
-                return subTypesOf.contains(value) ? (Class<? extends T>) value: null;
-            }
             throw new RuntimeException("Class is not annotated with @Qualifier: " + cls.getName());
         }
 

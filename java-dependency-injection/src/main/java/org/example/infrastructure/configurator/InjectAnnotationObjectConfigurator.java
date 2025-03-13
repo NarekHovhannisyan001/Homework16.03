@@ -18,9 +18,9 @@ public class InjectAnnotationObjectConfigurator implements ObjectConfigurator {
             if (field.isAnnotationPresent(Inject.class)) {
                 field.setAccessible(true);
                 Qualifier qualifier = field.getAnnotation(Qualifier.class);
-                Object value = context.getObject(qualifier.value());
-                if (qualifier != null) {
-                    value = context.getObject(field.getType());
+                Object value = context.getObject(field.getType());
+                if (qualifier == null) {
+                    value = context.getObject(qualifier.value());
                 }
                 field.set(obj, value);
             }

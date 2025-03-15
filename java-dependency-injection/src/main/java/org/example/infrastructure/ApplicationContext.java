@@ -27,17 +27,17 @@ public class ApplicationContext {
     @SuppressWarnings("unchecked")
     public <T> T getObject(Class<T> cls) {
         Class<? extends T> implClass = objectConfigReader.getImplClass(cls);
+        T object = objectFactory.createObject(implClass);
+
+        if (objectConfigReader.isPrototype(implClass)) {
+            return  object;
+        }
 
         if (singletonCache.containsKey(implClass)) {
             return (T) singletonCache.get(implClass);
         }
 
-        T object = objectFactory.createObject(implClass);
-
-        if (!implClass.isAnnotationPresent(Scope.class) || implClass.getAnnotation(Scope.class).value() == ScopeType.SINGLETON) {
-            singletonCache.put(implClass, object);
-        }
-
+        singletonCache.put(implClass, object);
         return object;
     }
 }

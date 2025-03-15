@@ -2,6 +2,8 @@ package org.example.infrastructure.configreader;
 
 import org.example.infrastructure.annotation.Component;
 import org.example.infrastructure.annotation.Qualifier;
+import org.example.infrastructure.annotation.Scope;
+import org.example.infrastructure.annotation.ScopeType;
 import org.reflections.Reflections;
 
 import java.util.Collection;
@@ -44,5 +46,12 @@ public class JavaObjectConfigReader implements ObjectConfigReader {
     @Override
     public <T> Collection<Class<? extends T>> getImplClasses(Class<T> cls) {
         return reflections.getSubTypesOf(cls);
+    }
+
+    public boolean isPrototype(Class<?> cls) {
+        if (!cls.isAnnotationPresent(Scope.class) || cls.getDeclaredAnnotation(Scope.class).value().equals(ScopeType.SINGLETON)) {
+            return false;
+        }
+        return true;
     }
 }

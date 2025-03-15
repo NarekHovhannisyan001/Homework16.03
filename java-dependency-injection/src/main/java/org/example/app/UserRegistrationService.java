@@ -2,10 +2,8 @@ package org.example.app;
 
 
 import lombok.Getter;
+import org.example.app.exception.UserAlreadyExistsException;
 import org.example.infrastructure.annotation.*;
-import org.example.infrastructure.configreader.ObjectConfigReader;
-
-import javax.annotation.PreDestroy;
 
 @Log
 @Component
